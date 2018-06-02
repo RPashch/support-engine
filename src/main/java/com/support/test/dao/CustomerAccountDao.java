@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerAccountDao extends JpaRepository<CustomerAccount,Integer> {
 
-    Page<CustomerAccount> findCustomAccountsByCustom_Id(Integer id, Pageable pageable);
+    Page<CustomerAccount> findCustomerAccountsByCustomer_Id(Integer id, Pageable pageable);
 
 
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="row">
+    <div class="col-md-12">
+        <input type="hidden" id="total" th:value="${total}"/>
+        <div class="table" th:fragment="customer-table" id="customer-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="organization-result" th:each="item : ${accounts}">
+                    <td><span th:text="${item.getId()}"></span></td>
+                    <td><span th:text="${item.getBalance()}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

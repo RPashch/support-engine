@@ -27,7 +27,7 @@ CREATE TABLE `transactions` (
 	`account_from_id` INT NOT NULL,
 	`account_to_id` INT NOT NULL,
 	`amount` DECIMAL(20) NOT NULL,
-	`date_time` DATETIME NOT NULL,
+	`date` DATE NOT NULL,
 	PRIMARY KEY (`id`)
 );
 

@@ -6,14 +6,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional
 public interface CustomerService {
 
     Page <Customer> getCustomers(PageRequest pageRequest);
 
     void addCustomer(Customer customer);
 
-    void updateCustomerById(Integer customId);
+    Customer getCustomerById(Integer customId);
+
+    void updateCustomer(Customer customer);
 
 }

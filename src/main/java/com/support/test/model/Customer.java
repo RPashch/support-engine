@@ -3,7 +3,8 @@ package com.support.test.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 @Data
@@ -31,9 +32,24 @@ public class Customer {
 
     @NonNull
     @Column(name = "date_of_bitrh")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate dateOfBirth;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "custom")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<CustomerAccount> accounts;
+
+    public Integer getAge(){
+        return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
+
+    public Double getBalanceFromAllAccounts(){
+        if(accounts!=null && accounts.size()>0){
+            return accounts
+                    .stream()
+                    .map(CustomerAccount::getBalance)
+                    .reduce((aDouble, aDouble2) -> aDouble+aDouble2)
+                    .get();
+        }
+        return null;
+    }
 }

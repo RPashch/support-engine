@@ -3,6 +3,7 @@ package com.support.test.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -35,8 +36,7 @@ public class Transaction {
     private Double amount;
 
     @NonNull
-    @Column(name = "date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateTime;
+    @Column(name = "date")
+    private LocalDate date;
 
 }

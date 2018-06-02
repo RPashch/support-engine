@@ -7,15 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-@Service
-@Transactional
 public interface TransactionService {
 
-    Page <Transaction> getTransactionsByCustomId(Integer id, PageRequest pageRequest);
+    Page <Transaction> getAllTransactions(PageRequest pageRequest);
+
+    Page <Transaction> getTransactionsByCustomerAccountId(Integer id, PageRequest pageRequest);
 
     Page <Transaction> getTransactionsBetweenTwoDates(LocalDate localDateStart, LocalDate localDateEnd, PageRequest pageRequest);
 
-    Page <Transaction> getTransactionsBetweenTwoDatesAndByCustomId(
+    Page <Transaction> getTransactionsBetweenTwoDatesAndByCustomerAccountId(
             LocalDate localDateStart, LocalDate localDateEnd, Integer id, PageRequest pageRequest);
 
     void addTransaction(Transaction transaction);

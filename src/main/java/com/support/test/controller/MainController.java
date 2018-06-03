@@ -36,27 +36,8 @@ public class MainController {
             model.addAttribute("totalCustomers", (page.getTotalElements() / 10) + 1);
 
         model.addAttribute("customers", page);
+        model.addAttribute("customer", new Customer());
         return new ModelAndView("home", model);
     }
 
-    @GetMapping(value = {"/data"})
-    public ModelAndView makeData(ModelMap model) {
-        Customer customer = Customer.builder().firstName("Vova").secondName("Rara").dateOfBirth(LocalDate.of(1999,12,10)).build();
-        customerService.addCustomer(customer);
-
-        Customer customerScnd = Customer.builder().firstName("Roma").secondName("VVVAaaaaa").dateOfBirth(LocalDate.of(1949,1,10)).build();
-        customerService.addCustomer(customerScnd);
-
-        CustomerAccount customerAccount3 = CustomerAccount.builder().customer(customer).balance(200.5).build();
-        CustomerAccount customerAccount1 = CustomerAccount.builder().customer(customerScnd).balance(100.0).build();
-        CustomerAccount customerAccount2 = CustomerAccount.builder().customer(customerScnd).balance(20.5).build();
-        customerAccountService.addCustomAccount(customerAccount3);
-        customerAccountService.addCustomAccount(customerAccount2);
-        customerAccountService.addCustomAccount(customerAccount1);
-
-        Transaction transaction = Transaction.builder().accountFrom(customerAccount1).accountTo(customerAccount2).amount(10.0).date(LocalDate.now()).build();
-        transactionService.addTransaction(transaction);
-
-        return new ModelAndView("home", model);
-    }
 }

@@ -1,13 +1,13 @@
 package com.support.test.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Set;
 
-@Data
 @Getter
 @Setter
 @Entity
@@ -32,6 +32,7 @@ public class Customer {
 
     @NonNull
     @Column(name = "date_of_bitrh")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    @Temporal(TemporalType.DATE)
     private LocalDate dateOfBirth;
 

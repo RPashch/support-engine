@@ -1,6 +1,7 @@
 package com.support.test.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,6 +38,7 @@ public class Transaction {
 
     @NonNull
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
 }

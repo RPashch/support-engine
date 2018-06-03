@@ -1,4 +1,5 @@
 package com.support.test.service;
+import com.support.test.dto.TransactionDTO;
 import com.support.test.model.Transaction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,6 @@ public interface TransactionService {
     Page <Transaction> getTransactionsBetweenTwoDatesAndByCustomerAccountId(
             LocalDate localDateStart, LocalDate localDateEnd, Integer id, PageRequest pageRequest);
 
-    void addTransaction(Transaction transaction);
+    void addTransaction(TransactionDTO transactionDTO);
 
 }

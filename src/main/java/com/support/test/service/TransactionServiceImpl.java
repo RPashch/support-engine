@@ -2,6 +2,7 @@ package com.support.test.service;
 
 import com.support.test.dao.CustomerAccountDao;
 import com.support.test.dao.TransactionDao;
+import com.support.test.dto.TransactionDTO;
 import com.support.test.model.CustomerAccount;
 import com.support.test.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,9 +60,16 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void addTransaction(Transaction transaction) {
-        customerAccountService.changeBalanceByAccountId(transaction.getAccountFrom().getId(),transaction.getAmount(), false);
-        customerAccountService.changeBalanceByAccountId(transaction.getAccountFrom().getId(),transaction.getAmount(), true);
-        transactionDao.save(transaction);
+    public void addTransaction(TransactionDTO transactionDTO) {
+
+        customerAccountService.changeBalanceByAccountId(transactionDTO.getAccountTo(),transactionDTO.getAmount(), true);
+        customerAccountService.changeBalanceByAccountId(transactionDTO.getAccountFrom(),transactionDTO.getAmount(), false);
+        transactionDao.save(Transaction.
+                builder()
+                .accountFrom(customerAccountDao.findById(transactionDTO.getAccountFrom()).get())
+                .accountTo(customerAccountDao.findById(transactionDTO.getAccountTo()).get())
+                .amount(transactionDTO.getAmount())
+                .date(transactionDTO.getDate())
+                .build());
     }
 }

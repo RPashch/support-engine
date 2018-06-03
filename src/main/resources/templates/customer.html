@@ -10,26 +10,50 @@
 
 </head>
 <body>
-<div class="row">
-    <div class="col-md-12">
-        <input type="hidden" id="total" th:value="${total}"/>
-        <div class="table" th:fragment="customer-table" id="customer-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Balance</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="organization-result" th:each="item : ${accounts}">
-                    <td><span th:text="${item.getId()}"></span></td>
-                    <td><span th:text="${item.getBalance()}"></span></td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" id="total" th:value="${total}"/>
+            <div class="table" th:fragment="customer-table" id="customer-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="organization-result" th:each="item : ${accounts}">
+                        <td><span th:text="${item.getId()}"></span></td>
+                        <td><span th:text="${item.getBalance()}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+
+    <h3>Add new account to this client</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!--/*@thymesVar id="customer" type="com.support.test.model.Customer"*/-->
+            <form action="#"
+                  th:action="@{/{path}/account(path=${customerId})} " class="form-horizontal"
+                  role="form" th:object="${newAccount}" method="post">
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label">Start balance</label>
+                    <div class="col-md-10">
+                        <input type="number" class="form-control" th:field="*{balance}"
+                               th:errorclass="has-error" required="required"/>
+                        <!--it's for validation feature which says to user that smth has error-->
+                        <p class="error-form-field" th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}">Error</p>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Save</button>
+            </form>
+
+        </div>
+    </div>
+
 </body>
 </html>

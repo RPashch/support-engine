@@ -1,6 +1,6 @@
--- create database and delete if ixists
-
-use test;
+DROP DATABASE if exists romanPashch;
+CREATE DATABASE romanPashch;
+use romanPashch;
 SET FOREIGN_KEY_CHECKS = 0;
 drop table if exists customs;
 drop table if exists accounts;

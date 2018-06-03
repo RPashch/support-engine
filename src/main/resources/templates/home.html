@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <h1>Hello brother</h1>
     <nav class="nav nav-pills nav-fill">
         <a class="nav-item nav-link" href="/transactions">Transactions</a>
         <!--<a class="nav-item nav-link" href="/home">Home page</a>-->
@@ -50,6 +49,45 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <h3>Add new client to the bank</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <!--/*@thymesVar id="customer" type="com.support.test.model.Customer"*/-->
+            <form action="#"
+                  th:action="@{/customer}" class="form-horizontal"
+                  role="form" th:object="${customer}" method="post">
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label">First name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" th:field="*{firstName}"
+                               th:errorclass="has-error" required="required"/>
+                        <!--it's for validation feature which says to user that smth has error-->
+                        <p class="error-form-field" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label">Second name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" th:field="*{secondName}"
+                               th:errorclass="has-error" required="required"/>
+                        <!--it's for validation feature which says to user that smth has error-->
+                        <p class="error-form-field" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}">Error</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-form-label">Date of birth</label>
+                    <div class="col-md-10">
+                        <input type="date" class="form-control" th:field="*{dateOfBirth}"
+                               th:errorclass="has-error" required="required"/>
+                        <!--it's for validation feature which will say to user that smth has error-->
+                        <p class="error-form-field" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Error</p>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Save</button>
+            </form>
+
         </div>
     </div>
 
